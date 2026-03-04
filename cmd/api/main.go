@@ -7,6 +7,8 @@ import (
 	"os"
 	"strconv"
 	"time"
+
+	"github.com/joho/godotenv"
 )
 
 const version = "0.0.1"
@@ -21,6 +23,8 @@ type application struct {
 }
 
 func main() {
+	// Load .env file if present (no-op if file doesn't exist)
+	_ = godotenv.Load()
 
 	var cfg config
 

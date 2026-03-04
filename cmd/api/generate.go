@@ -69,11 +69,10 @@ func (app *application) generateHandler(w http.ResponseWriter, r *http.Request) 
 	}
 
 	openRouterReq := openRouterRequest{
-		Model: "openai/gpt-oss-20b",
+		Model: "openai/gpt-oss-20b:nitro",
 		Messages: []messageRole{
 			{Role: "user", Content: req.Prompt},
 		},
-		Provider: &providerOpts{Only: []string{"groq"}},
 	}
 
 	body, err := json.Marshal(openRouterReq)
@@ -90,7 +89,6 @@ func (app *application) generateHandler(w http.ResponseWriter, r *http.Request) 
 
 	httpReq.Header.Set("Content-Type", "application/json")
 	httpReq.Header.Set("Authorization", "Bearer "+apiKey)
-	httpReq.Header.Set("HTTP-Referer", "https://github.com/railway")
 
 	client := &http.Client{}
 	resp, err := client.Do(httpReq)
